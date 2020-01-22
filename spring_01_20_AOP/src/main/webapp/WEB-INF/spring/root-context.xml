@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- 어노테이션을 이용한 AOP -->
+	<aop:aspectj-autoproxy /> <!-- 어노테이션으로 된 부분을 객체로 생성하는 것 -->
+	<bean id="logAopAnnotation" class="edu.bit.ex.LogAopAnnotation" />
+	
+	<bean id = "student" class="edu.bit.ex.Student">
+		<property name="name" value="홍길동"></property>
+		<property name="age" value="10"></property>
+		<property name="gradeNum" value="3"></property>
+		<property name="classNum" value="5"></property>
+	</bean>
+	
+	<bean id = "worker" class="edu.bit.ex.Worker">
+		<property name="name" value="홍길순"></property>
+		<property name="age" value="35"></property>
+		<property name="job" value="개발자"></property>
+	</bean>
+	
+	<!-- xml 설정파일을 이용한 AOP -->
+	<!-- <bean id = "logAdvice" class="edu.bit.ex.LogAdvice"></bean>
+	
+	<aop:config>
+		<aop:aspect ref="logAdvice"> 참조할 주소 가져오는 것
+			<aop:pointcut id="publicM" expression="within(edu.bit.ex.*)"/> id 이름은 개발자가 지음 edu.bit.ex.* 안에 있는 함수를 publicM라고 지칭함
+			<aop:before pointcut-ref="publicM" method="printLogging"/> printLogging함수를 publicM라고 지정한 함수 사이사이에 넣겠다 / publicM함수를 실행하기 전에
+		</aop:aspect>
+	</aop:config> -->
+		
+	<!-- <bean id = "logAop" class="edu.bit.ex.LogAop"></bean>
+	
+	<aop:config>
+		<aop:aspect ref="logAop">
+			<aop:pointcut id="publicM" expression="within(edu.bit.ex.*)"/> 
+			<aop:around pointcut-ref="publicM" method="loggerAop"/>
+		</aop:aspect>
+	</aop:config> -->
+	
+</beans>
